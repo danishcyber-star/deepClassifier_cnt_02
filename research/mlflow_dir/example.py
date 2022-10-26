@@ -74,9 +74,12 @@ if __name__ == "__main__":
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
         
-        remote_server_uri = "https://dagshub.com/c17hawke/FSDS_NOV_deepCNNClassifier.mlflow"
+        remote_server_uri = "https://dagshub.com/danishcyber-star/deepClassifier_cnt_02.mlflow"
+        #"http://localhost:1234"
+        #https://dagshub.com/danishcyber-star/deepClassifier_cnt_02
         mlflow.set_tracking_uri(remote_server_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+        print(tracking_url_type_store)
 
         # Model registry does not work with file store
         if tracking_url_type_store != "file":
@@ -88,3 +91,5 @@ if __name__ == "__main__":
             mlflow.sklearn.log_model(lr, "model", registered_model_name="ElasticnetWineModel")
         else:
             mlflow.sklearn.log_model(lr, "model")
+
+
